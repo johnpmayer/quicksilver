@@ -5,7 +5,6 @@ use crate::{
     file::load_file,
     geom::{Rectangle, Transform, Vector},
 };
-use futures::{Future, future};
 use std::{
     error::Error,
     fmt,
@@ -40,7 +39,7 @@ impl Image {
     }
 
     /// Start loading a texture from a given path
-    pub fn load<P: AsRef<Path>>(path: P) -> impl Future<Item = Image, Error = QuicksilverError> {
+    pub fn load(path: impl AsRef<Path>) -> impl Future<Output=Result<Image>> {
         load_file(path)
             .map(|data| Image::from_bytes(data.as_slice()))
             .and_then(future::result)

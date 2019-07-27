@@ -1,7 +1,6 @@
 //! The module that manages control flow of Quicksilver applications
 
 mod application;
-mod asset;
 mod event;
 mod run;
 mod state;

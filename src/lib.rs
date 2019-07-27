@@ -32,8 +32,7 @@
 //! struct DrawGeometry;
 //! 
 //! impl State for DrawGeometry {
-//!     fn new() -> Result<DrawGeometry> {
-//!         Ok(DrawGeometry)
+//!     fn new() -> Result<DrawGeometry> { Ok(DrawGeometry)
 //!     }
 //! 
 //!     fn draw(&mut self, window: &mut Window) -> Result<()> {
@@ -139,26 +138,23 @@
     unused_qualifications
 )]
 
-#[macro_use]
-extern crate serde_derive;
 #[cfg(target_arch = "wasm32")]
 #[macro_use]
 extern crate stdweb;
 
 mod backend;
 mod error;
-mod file;
 pub mod geom;
 pub mod graphics;
 pub mod input;
 pub mod lifecycle;
 pub mod prelude;
 #[cfg(feature = "saving")]
-pub mod saving;
+pub use quick_saving as saving;
 #[cfg(feature = "sounds")]
 pub mod sound;
 pub use crate::error::QuicksilverError as Error;
-pub use crate::file::load_file;
+pub use quick_fs::load_file;
 
 #[cfg(feature = "lyon")]
 pub use lyon;

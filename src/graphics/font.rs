@@ -4,7 +4,6 @@ use crate::{
     error::QuicksilverError,
     graphics::{Color, Image, PixelFormat},
 };
-use futures::{Future, future};
 use rusttype::{Font as RTFont, FontCollection, PositionedGlyph, Scale, point};
 use std::path::Path;
 
@@ -15,7 +14,7 @@ pub struct Font {
 
 impl Font {
     /// Load a font at a given file
-    pub fn load(path: impl AsRef<Path>) -> impl Future<Item = Font, Error = QuicksilverError> {
+    pub fn load(path: impl AsRef<Path>) -> impl Future<Result<Font>> {
         load_file(path)
             .map(Font::from_bytes)
             .and_then(future::result)
