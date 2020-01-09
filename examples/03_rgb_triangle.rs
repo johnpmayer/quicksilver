@@ -41,7 +41,7 @@ async fn app(window: Window, mut gfx: Graphics, mut events: EventStream) -> Resu
         };
         vec![top, left, right]
     };
-    // A triangle is simply a pointer to indices of the vertices
+    // A triangle a triplet of indices of the vertices
     let elements = vec![Element::Triangle([0, 1, 2])];
     // Bring the vertices and the triangle elements together to define a mesh
     let mesh = Mesh {
